@@ -3,6 +3,8 @@ set_version("1.3.2")
 set_languages("cxx20")
 
 add_rules("mode.debug", "mode.release")
+add_requires("boost", {configs = {program_options = true}})
+add_requires("fmt")
 
 option("build_exe")
     set_default(false)
@@ -15,10 +17,7 @@ option("kind")
     set_description("Library type (static or shared)")
     set_values("static", "shared")
 
-if has_config("build_exe") then
-    add_requires("boost", {configs = {program_options = true}})
-    add_requires("fmt")
-end
+
 
 target("Pex")
     set_kind("$(kind)")
@@ -39,7 +38,9 @@ if has_config("build_exe") then
         add_files("Champollion/main.cpp")
         add_includedirs(".", "Champollion")
         add_deps("Decompiler", "Pex")
-        add_packages("boost", "fmt")
+        add_packages("fmt")
+        add_links("boost_program_options")
+
         if is_plat("windows") then
             add_defines("_CRT_SECURE_NO_WARNINGS")
         end

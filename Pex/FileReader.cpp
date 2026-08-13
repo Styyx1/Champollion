@@ -6,6 +6,7 @@
 #include <iomanip>
 
 #include <cassert>
+#include <cstring>
 
 /**
  * @brief Construct from file name
