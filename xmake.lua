@@ -3,7 +3,6 @@ set_version("1.3.2")
 set_languages("cxx20")
 
 add_rules("mode.debug", "mode.release")
-add_requires("boost", {configs = {program_options = true}})
 add_requires("fmt")
 
 option("build_exe")
@@ -40,6 +39,10 @@ if has_config("build_exe") then
         add_deps("Decompiler", "Pex")
         add_packages("fmt")
         add_links("boost_program_options")
+
+        if is_plat("linux") then
+            add_rpathdirs("$ORIGIN/../lib")
+        end
 
         if is_plat("windows") then
             add_defines("_CRT_SECURE_NO_WARNINGS")

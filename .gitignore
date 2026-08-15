@@ -71,3 +71,5 @@ Pex/INSTALL.vcxproj
 Pex/INSTALL.vcxproj.filters
 x64/
 .xmake/
+Champollion.AppDir/
+*AppImage
